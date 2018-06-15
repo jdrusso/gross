@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #TODO: Add a wrapper for insane.py
+#TODO: Could build the slurm file automatically
 
 STEPS = ["setup", "solvation", "minimization",
          "equilibration", "production"]
@@ -80,7 +81,7 @@ class gromacs_executor:
 
             # Execute remote job
             subprocess.run(["ssh", "greene",
-            "sbatch",REMOTE_DIR + _p["slurm"]], check=True)
+            "sbatch", self.remote_dir + _p["slurm"]], check=True)
 
         # Invoke mdrun locally otherwise
         elif not cluster:
@@ -91,10 +92,10 @@ class gromacs_executor:
 
 
     # Convenient callers for each step
-    def minimize(self, cluster=False):
-        self.gmx_cmd("minimization", cluster)
-    def equilibrate(self, cluster=False):
-        self.gmx_cmd("equilibration", cluster)
+    def minimize(self):
+        self.gmx_cmd("minimization")
+    def equilibrate(self):
+        self.gmx_cmd("equilibration")
     def production(self, cluster=False):
         self.gmx_cmd("production", cluster)
 
