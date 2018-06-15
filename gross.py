@@ -55,7 +55,8 @@ class gromacs_executor:
         # Invoke mdrun
         os.system("mdrun -v -deffnm %s" % _p["mdrun_name"])
 
-        print("%s complete!" % step)
+        # Use title to capitalize the first letter, so it's pretty.
+        print("%s complete!" % step.title())
 
 
     # Convenient callers for each step
@@ -75,26 +76,26 @@ if __name__ == "__main__":
     production = False
 
     try:
-      opts, args = getopt.getopt(argv,"mepa")
-   except getopt.GetoptError:
-      print 'Usage: gross.py -m -e -p -a'
-      sys.exit(2)
-   for opt, arg in opts:
-      if opt == '-h':
-         print 'Usage: gross.py [-m] [-e] [-p] [-a]\n'+
-         '-m: Run minimization step\n' +
-         '-e: Run equilibration step\n' +
-         '-p: Run production MD run step\n' +
-         '-a: Run all steps\n' +
-         sys.exit()
-     elif opt == "-m":
-         minimize = True
-     elif opt == "-e":
-         equilibrate = True
-     elif opt == "-p":
-         production = True
-     elif opt == "-a":
-         minimize, equilibrate, production = True, True, True
+        opts, args = getopt.getopt(sys.argv[1:],"mepa")
+    except getopt.GetoptError:
+        print('Usage: gross.py -m -e -p -a')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print('Usage: gross.py [-m] [-e] [-p] [-a]\n'+
+            '-m: Run minimization step\n' +
+            '-e: Run equilibration step\n' +
+            '-p: Run production MD run step\n' +
+            '-a: Run all steps\n')
+            sys.exit()
+        elif opt == "-m":
+            minimize = True
+        elif opt == "-e":
+            equilibrate = True
+        elif opt == "-p":
+            production = True
+        elif opt == "-a":
+            minimize, equilibrate, production = True, True, True
 
     gmx = gromacs_executor(CONFIG)
 
