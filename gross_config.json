@@ -1,0 +1,23 @@
+{
+  "working directory":"~/research/simple_protein_bilayer",
+  "minimization":{
+    "coordinates":"system.gro",
+    "parameters" :"minimization.mdp",
+    "topology"   :"system.top",
+    "output"     :"minimization.tpr",
+    "mdrun_name" :"minimization"},
+
+  "equilibration":{
+    "coordinates":"minimization.gro",
+    "parameters" :"equilibration.mdp",
+    "topology"   :"system.top",
+    "output"     :"equilibration.tpr",
+    "mdrun_name" :"equilibration"},
+
+  "production":{
+    "coordinates":"equilibration.gro",
+    "parameters" :"dynamic.mdp",
+    "topology"   :"system.top",
+    "output"     :"dynamic.tpr",
+    "mdrun_name" :"dynamic"}
+}
