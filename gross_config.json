@@ -1,5 +1,21 @@
 {
-  "working directory":"~/research/simple_protein_bilayer",
+  "COMMENTS": [
+  "This provides a configuration file for gross.py, t",
+   "simplify invoking GROMACS. The following files are",
+   "included in the configuration, but will be",
+   "auto-generated during a run of all steps:",
+    "* minimization.tpr",
+    "* minimization.gro",
+    "* equilibration.gro",
+    "* equilibration.tpr",
+    "* dynamic.tpr",
+  "Therefore, these files do not need to exist before",
+  "running.  As of now, gross.py will not generate or",
+  "validate any of these for  you -- so make sure all the",
+  "required files are set up correctly!"],
+  "working directory":"research/simple_protein_bilayer",
+  "remote":"<remote machine here>",
+  "remote_dir":"<directory to put files for remote production run>",
   "minimization":{
     "coordinates":"system.gro",
     "parameters" :"minimization.mdp",
@@ -19,5 +35,6 @@
     "parameters" :"dynamic.mdp",
     "topology"   :"system.top",
     "output"     :"dynamic.tpr",
-    "mdrun_name" :"dynamic"}
+    "mdrun_name" :"dynamic",
+    "slurm"      :"gmx.job"}
 }
