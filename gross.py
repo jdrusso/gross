@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+#TODO: Add a wrapper for insane.py
 
 STEPS = ["setup", "solvation", "minimization",
          "equilibration", "production"]
 
 import json
 import os, sys, getopt
+import subprocess
 
 CONFIG = "gross_config.json"
 
@@ -43,17 +45,21 @@ class gromacs_executor:
     # Invokes the gromacs command appropriate for the step
     def gmx_cmd(self, step):
 
+        # Load the appropriate set of parameters from the imported JSON
         _p = self.params[step]
 
         print("Performing %s..." % type)
 
-        # Invoke grompp
-        os.system("grompp \
-        -f {0} -c {1} -p {2} -o {3}".format(
-        _p["parameters"], _p["coordinates"], _p["topology"], _p["output"]))
+        # Invoke grompp. Set check=True so an exception is raised if it's unsuccessful
+        subprocess.run(["grompp",
+            "-f", _p["parameters"],
+            "-c", _p["coordinates"],
+            "-p", _p["topology"],
+            "-o", _p["output"]
+            ], check=True)
 
         # Invoke mdrun
-        os.system("mdrun -v -deffnm %s" % _p["mdrun_name"])
+        subprocess.run(["mdrun", "-v", "-deffnm", _p["mdrun_name"]], check=True)
 
         # Use title to capitalize the first letter, so it's pretty.
         print("%s complete!" % step.title())
