@@ -35,9 +35,6 @@ class gromacs_executor:
 
         self.cwd = params["working directory"]
         self.params = params
-        # self.minimization = params["minimization"]
-        # self.equilibration = params["equilibration"]
-        # self.production = params["production"]
 
         print("Configuration loaded!")
 
@@ -82,17 +79,17 @@ if __name__ == "__main__":
     production = False
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"mepa")
+        opts, args = getopt.getopt(sys.argv[1:],"hmepa")
     except getopt.GetoptError:
         print('Usage: gross.py -m -e -p -a')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
             print('Usage: gross.py [-m] [-e] [-p] [-a]\n'+
-            '-m: Run minimization step\n' +
-            '-e: Run equilibration step\n' +
-            '-p: Run production MD run step\n' +
-            '-a: Run all steps\n')
+            '\t -m: Run minimization step\n' +
+            '\t -e: Run equilibration step\n' +
+            '\t -p: Run production MD run step\n' +
+            '\t -a: Run all steps')
             sys.exit()
         elif opt == "-m":
             minimize = True
