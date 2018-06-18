@@ -47,22 +47,27 @@ class gromacs_executor:
 
 
     # Invokes the gromacs command appropriate for the step
-    def gmx_cmd(self, step, cluster=False):
+    def gmx_cmd(self, step, cluster=False, dry=False):
 
         # Load the appropriate set of parameters from the imported JSON
         _p = self.params[step]
 
-        print("Performing %s..." % step)
+        print("\nPerforming %s..." % step)
 
 
         # Invoke grompp. Set check=True so an exception is raised if
         #   it's unsuccessful
-        subprocess.run(["grompp",
-            "-f", _p["parameters"],
-            "-c", _p["coordinates"],
-            "-p", _p["topology"],
-            "-o", _p["output"]
-            ], check=True)
+        grompp_cmd = "grompp -f {params} -c {coords} -p {topol} -o {out}".format(
+        params = _p["parameters"],
+        coords = _p["coordinates"],
+        topol  = _p["topology"],
+        out    = _p["output"]
+        )
+
+        if dry:
+            print(grompp_cmd)
+        else:
+            subprocess.run(grompp_cmd.split(), check=True)
 
         # Handle doing mdrun on the cluster
         if cluster:
@@ -73,31 +78,53 @@ class gromacs_executor:
                 print("Remote was not specified! Check %s and ensure \
                 that remote and remote_dir are defined. " % CONFIG)
 
-            # Sync over necessary files to run
-            subprocess.run(["rsync",
-                _p["parameters"], _p["coordinates"], _p["topology"], _p["output"], _p["slurm"],
-                self.remote + ":" + self.remote_dir],
-            check=True)
+            rsync_cmd = \
+            "rsync {params} {coords} {topol} {out} {slurm} {remote}:{remote_dir}".format(
+            params = _p["parameters"],
+            coords = _p["coordinates"],
+            topol  = _p["topology"],
+            out    = _p["output"],
+            slurm  = _p["slurm"],
+            remote = self.remote,
+            remote_dir = self.remote_dir)
 
-            # Execute remote job
-            subprocess.run(["ssh", "greene",
-            "sbatch", self.remote_dir + _p["slurm"]], check=True)
+            sbatch_cmd = "ssh greene sbatch {remote_dir}{slurm}".format(
+            remote_dir = self.remote_dir,
+            slurm      = _p["slurm"])
+
+            if dry:
+                print(rsync_cmd)
+                print(sbatch_cmd)
+
+            else:
+                # Sync over necessary files to run
+                subprocess.run(rsync_cmd.split(), check=True)
+
+                # Execute remote job
+                subprocess.run(sbatch_cmd.split(), check=True)
 
         # Invoke mdrun locally otherwise
         elif not cluster:
-            subprocess.run(["mdrun", "-v", "-deffnm", _p["mdrun_name"]], check=True)
+
+            mdrun_cmd = "mdrun -v -deffnm {mdrun_name}".format(
+            mdrun_name = _p["mdrun_name"])
+
+            if dry:
+                print(mdrun_cmd)
+            else:
+                subprocess.run(mdrun_cmd.split(), check=True)
 
         # Use title to capitalize the first letter, so it's pretty.
         print("%s complete!" % step.title())
 
 
     # Convenient callers for each step
-    def minimize(self):
-        self.gmx_cmd("minimization")
-    def equilibrate(self):
-        self.gmx_cmd("equilibration")
-    def production(self, cluster=False):
-        self.gmx_cmd("production", cluster)
+    def minimize(self, dry=False):
+        self.gmx_cmd("minimization", dry=dry)
+    def equilibrate(self, dry=False):
+        self.gmx_cmd("equilibration", dry=dry)
+    def production(self, cluster=False, dry=False):
+        self.gmx_cmd("production", cluster=cluster, dry=dry)
 
 
 
@@ -107,20 +134,22 @@ if __name__ == "__main__":
     equilibrate = False
     production = False
     cluster = False
+    dry_run = True
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"hmepac")
+        opts, args = getopt.getopt(sys.argv[1:],"hmepacd")
     except getopt.GetoptError:
-        print('Usage: gross.py [-m] [-e] [-p] [-a] [-c]')
+        print('Usage: gross.py [-m] [-e] [-p] [-a] [-c] [-d]')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print('Usage: gross.py [-m] [-e] [-p] [-a] [-c]\n'+
+            print('Usage: gross.py [-m] [-e] [-p] [-a] [-c] [-d]\n'+
             '\t -m: Run minimization step\n' +
             '\t -e: Run equilibration step\n' +
             '\t -p: Run production MD run step\n' +
             '\t -a: Run all steps\n' +
-            '\t -c: Run production step on cluster')
+            '\t -c: Run production step on cluster\n' +
+            '\t -d: Dry run. Show commands, but do not execute')
             sys.exit()
         elif opt == "-m":
             minimize = True
@@ -132,12 +161,14 @@ if __name__ == "__main__":
             minimize, equilibrate, production = True, True, True
         elif opt == "-c":
             cluster = True
+        elif opt == "-d":
+            dry_run = True
 
     gmx = gromacs_executor(CONFIG)
 
     if minimize:
-        gmx.minimize()
+        gmx.minimize(dry=dry_run)
     if equilibrate:
-        gmx.equilibrate()
+        gmx.equilibrate(dry=dry_run)
     if production:
-        gmx.production(cluster)
+        gmx.production(cluster=cluster, dry=dry_run)
