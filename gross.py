@@ -75,7 +75,7 @@ class gromacs_executor:
 
             # Sync over necessary files to run
             subprocess.run(["rsync",
-                _p["parameters"], _p["coordinates"], _p["topology"], _p["slurm"],
+                _p["parameters"], _p["coordinates"], _p["topology"], _p["output"], _p["slurm"],
                 self.remote + ":" + self.remote_dir],
             check=True)
 
