@@ -44,7 +44,7 @@ class gromacs_executor:
             # Ensure remote directory path is formatted properly
             if not self.remote_dir[-1] == '/':
                 self.remote_dir += '/'
-                
+
         except KeyError:
             print("Not configured for cluster!")
 
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     equilibrate = False
     production = False
     cluster = False
-    dry_run = True
+    dry_run = False
 
     try:
         opts, args = getopt.getopt(sys.argv[1:],"hmepacd")
