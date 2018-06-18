@@ -17,5 +17,3 @@ stores them in an easily readable .json file.
 
 `slurm` specifies a build script to use.
 `remote` and `remote_dir` specify a remote target for the runs and the directory to put them in.
-
-***NOTE:*** `remote_dir` MUST HAVE A TRAILING BACKSLASH!

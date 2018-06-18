@@ -40,6 +40,11 @@ class gromacs_executor:
         try:
             self.remote = params["remote"]
             self.remote_dir = params["remote_dir"]
+
+            # Ensure remote directory path is formatted properly
+            if not self.remote_dir[-1] == '/':
+                self.remote_dir += '/'
+                
         except KeyError:
             print("Not configured for cluster!")
 
