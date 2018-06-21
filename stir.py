@@ -6,13 +6,11 @@ import re
 class Parser:
 
     # Initialize the parser and open the file for IO
-    def __init__(self, filename, outfilename, x, y, z):
+    def __init__(self, filename, outfilename):
         self.filename = filename
         self.outfilename = outfilename
 
         # Save the box size
-        # TODO: Get this from the last line
-        self.x, self.y, self.z = x, y, z
 
         try:
             self.file = open(filename, 'r')
@@ -26,7 +24,12 @@ class Parser:
             # print(i)
             if i == 1:
                 self.num_atoms = int(line)
-                break
+                continue
+            if len(re.findall("(\d\.\d)", line)) == 3:
+                _dimension = re.findall("(\d+\.\d+)", line)
+                self.x = float(_dimension[0])
+                self.y = float(_dimension[1])
+                self.z = float(_dimension[2])
 
     # Return the number of non-water molecules
     #   Water molecules will be stripped out
@@ -62,6 +65,8 @@ class Parser:
 
 
     # Write the new file, including new SRD particles and ignoring old particles
+    #   This could be done more easily by loading everything into memory and
+    #   operating on that, but that could fail for very large .gro files.
     def stir(self):
 
         num_particles = self.get_dry_particle_number() + self.get_num_SRD()
@@ -91,10 +96,6 @@ class Parser:
             # If we've read the last line, it's time to add SRD particles
             if len(re.findall("(\d\.\d)", line)) == 3:
                 print("Last line is: %s" % line)
-                _dimension = re.findall("(\d\.\d)", line)
-                self.x = float(_dimension[0])
-                self.y = float(_dimension[1])
-                self.z = float(_dimension[2])
                 break
 
             # If it's a dry particle, just copy it into the output
@@ -145,7 +146,7 @@ if __name__ == "__main__":
 
     print("Parsing file %s" % input)
 
-    parser = Parser(input, output, 50, 50, 20)
+    parser = Parser(input, output)
     parser.stir()
 
     print("Remember to update the topology file with 'SOL   %d'" % parser.get_num_SRD())

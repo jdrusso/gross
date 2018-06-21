@@ -84,7 +84,8 @@ class gromacs_executor:
                 that remote and remote_dir are defined. " % CONFIG)
 
             rsync_cmd = \
-            "rsync {params} {coords} {topol} {out} {slurm} {remote}:{remote_dir}".format(
+            "rsync {params} {coords} {topol} {out} {slurm} \
+            {remote}:{remote_dir}".format(
             params = _p["parameters"],
             coords = _p["coordinates"],
             topol  = _p["topology"],
