@@ -46,7 +46,7 @@ class Parser:
 
         print("%d water particles" % num_waters)
         print("Started with %d particles, new file has %d" %
-            (self.num_atoms, self.num_atoms - num_waters + self.get_num_SRD))
+            (self.num_atoms, self.num_atoms - num_waters + self.get_num_SRD()))
 
         # Calculate the number of SRD particles you want for a number density of 2.5
 
@@ -108,7 +108,7 @@ class Parser:
         for i in range(self.get_num_SRD()):
             res_id = res_id + 1 if res_id < 99999 else 1
             atom_id = atom_id + 1 if atom_id < 99999 else 1
-            
+
             outfile.write(
     		"%5d%-5s%5s%5d%8.3f%8.3f%8.3f\n" %
             (int(res_id), "SOL", "SRD", int(atom_id),
