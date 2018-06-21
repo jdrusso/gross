@@ -91,6 +91,10 @@ class Parser:
             # If we've read the last line, it's time to add SRD particles
             if len(re.findall("(\d\.\d)", line)) == 3:
                 print("Last line is: %s" % line)
+                _dimension = re.findall("(\d\.\d)", line)
+                self.x = float(_dimension[0])
+                self.y = float(_dimension[1])
+                self.z = float(_dimension[2])
                 break
 
             # If it's a dry particle, just copy it into the output
