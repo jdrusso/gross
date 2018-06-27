@@ -72,7 +72,7 @@ class gromacs_executor:
 
 
         # Handle doing mdrun on the cluster
-        if cluster:
+        if cluster and step=="production":
 
             try:
                 self.remote
@@ -84,12 +84,13 @@ class gromacs_executor:
             grompp_cmd = 'ssh -t %s cd %s ; ~/bin/gmx_srd ' % (self.remote, self.remote_dir) + grompp_cmd
 
             rsync_cmd = \
-            "rsync {params} {coords} {topol} {out} {slurm} \
+            "rsync -r {params} {coords} {topol} {out} {other} {slurm} \
             {remote}:{remote_dir}".format(
             params = _p["parameters"],
             coords = _p["coordinates"],
             topol  = _p["topology"],
-            out    = _p["output"],
+            out    = "",#_p["output"],
+            other  = _p["other"],
             slurm  = _p["slurm"],
             remote = self.remote,
             remote_dir = self.remote_dir)
