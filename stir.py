@@ -151,4 +151,5 @@ if __name__ == "__main__":
     parser = Parser(input, output)
     parser.stir()
 
-    print("Remember to update the topology file with 'SOL   %d'" % parser.get_num_SRD())
+    print("Add the following line to your topology file:")
+    print("SOL     %d" % parser.get_num_SRD())
