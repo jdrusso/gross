@@ -69,10 +69,7 @@ class gromacs_executor:
         out    = _p["output"]
         )
 
-        if dry:
-            print(grompp_cmd)
-        else:
-            subprocess.run(grompp_cmd.split(), check=True)
+
 
         # Handle doing mdrun on the cluster
         if cluster:
@@ -82,6 +79,9 @@ class gromacs_executor:
             except NameError:
                 print("Remote was not specified! Check %s and ensure \
                 that remote and remote_dir are defined. " % CONFIG)
+
+            # Do the prep step remotely too, to avoid version mismatches
+            grompp_cmd = 'ssh -t %s cd %s ; ~/bin/gmx_srd ' % (self.remote, self.remote_dir) + grompp_cmd
 
             rsync_cmd = \
             "rsync {params} {coords} {topol} {out} {slurm} \
@@ -100,17 +100,26 @@ class gromacs_executor:
 
             if dry:
                 print(rsync_cmd)
+                print(grompp_cmd)
                 print(sbatch_cmd)
 
             else:
                 # Sync over necessary files to run
                 subprocess.run(rsync_cmd.split(), check=True)
 
+                # Prep step on the remote
+                subprocess.run(grompp_cmd.split(), check=True)
+
                 # Execute remote job
                 subprocess.run(sbatch_cmd.split(), check=True)
 
         # Invoke mdrun locally otherwise
         elif not cluster:
+
+            if dry:
+                print(grompp_cmd)
+            else:
+                subprocess.run(grompp_cmd.split(), check=True)
 
             mdrun_cmd = "mdrun -v -deffnm {mdrun_name}".format(
             mdrun_name = _p["mdrun_name"])
