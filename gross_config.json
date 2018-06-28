@@ -12,7 +12,12 @@
   "Therefore, these files do not need to exist before",
   "running.  As of now, gross.py will not generate or",
   "validate any of these for  you -- so make sure all the",
-  "required files are set up correctly!"],
+  "required files are set up correctly!",
+  "",
+  "The production run has a field called other, which",
+  "can be used to store any folders of extra files (like topologies)",
+  "that should be sent to the remote as well. If specifying",
+  "a folder, omit the trailing slash."],
   "working directory":"research/simple_protein_bilayer",
   "remote":"<remote machine here>",
   "remote_dir":"<directory to put files for remote production run>",
@@ -35,6 +40,7 @@
     "parameters" :"dynamic.mdp",
     "topology"   :"system.top",
     "output"     :"dynamic.tpr",
+    "other"      :"",
     "mdrun_name" :"dynamic",
     "slurm"      :"gmx.job"}
 }
