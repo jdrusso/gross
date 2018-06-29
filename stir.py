@@ -138,7 +138,7 @@ if __name__ == "__main__":
     try:
         opts, args = getopt.getopt(sys.argv[1:],"i:o:")
     except getopt.GetoptError:
-        print('Usage: stir.py -i <input file>')
+        print('Usage: stir.py -i <input file> -o <output file>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-i':
