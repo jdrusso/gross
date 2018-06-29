@@ -17,3 +17,10 @@ stores them in an easily readable .json file.
 
 `slurm` specifies a build script to use.
 `remote` and `remote_dir` specify a remote target for the runs and the directory to put them in.
+
+#### `stir.py`
+
+`stir.py` handles preparing a system for SRD. Invoke it with `stir.py -i <input file> -o <output file>`, where the input/output files should be .gro files. 
+It will strip any water beads that may exist, and then randomly place SRD particles to achieve an SRD number density of 2.5 per nm^3 in the box.
+The box size is automatically determined from the input file.
+When finished, `stir.py` outputs the line that must be added to the topology file to complete adding the SRD particles.
