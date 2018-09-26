@@ -83,6 +83,11 @@ class gromacs_executor:
             # Do the prep step remotely too, to avoid version mismatches
             grompp_cmd = 'ssh -t %s cd %s ; ~/bin/gmx_srd ' % (self.remote, self.remote_dir) + grompp_cmd
 
+            # If an index file has been provided, use it.
+            if ".ndx" in _p["other"]:
+                # Get the index file from the parameters
+                grompp_cmd += " -n %s" % [x for x in _p["other"].split() if ".ndx" in x][0]
+
             rsync_cmd = \
             "rsync -r {params} {coords} {topol} {out} {other} {slurm} \
             {remote}:{remote_dir}".format(
