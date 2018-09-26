@@ -61,6 +61,8 @@ class Parser:
         volume = self.x*self.y*self.z
         num_srd = volume * density
 
+        print("Volume is %f, so need %d SRD particles" % (volume, num_srd))
+
         return int(num_srd)
 
 
