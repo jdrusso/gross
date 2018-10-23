@@ -6,7 +6,7 @@ version   = "---"
 previous  = "20140603.11.TAW"
 
 # Modify insane to take in arbitary lipid definition strings and use them as a template for lipids
-# Also take in lipid name 
+# Also take in lipid name
 # Edits: by Helgi I. Ingolfsson (all edits are marked with: # HII edit - lipid definition )
 
 # PROTOLIPID (diacylglycerol), 18 beads
@@ -51,9 +51,9 @@ lipidsa.update({      # 1   2   3   4   5   6   7   8   9  10  11  12  13  14  1
     "DPSM": (moltype, " -   -   -  NC3  -  PO4 AM1 AM2 T1A C2A C3A  -   -   -  C1B C2B C3B C4B  -   - "),
     "DBSM": (moltype, " -   -   -  NC3  -  PO4 AM1 AM2 T1A C2A C3A C4A  -   -  C1B C2B C3B C4B C5B  - "),
     "BNSM": (moltype, " -   -   -  NC3  -  PO4 AM1 AM2 T1A C2A C3A C4A  -   -  C1B C2B C3B C4B C5B C6B"),
-# PG for thylakoid membrane   
+# PG for thylakoid membrane
     "OPPG": (moltype, " -   -   -  GL0  -  PO4 GL1 GL2 C1A C2A C3A C4A  -   -  C1B D2B C3B C4B  -   - "),
-# PG for thylakoid membrane of spinach (PPT with a trans-unsaturated bond at sn1 and a triple-unsaturated bond at sn2, 
+# PG for thylakoid membrane of spinach (PPT with a trans-unsaturated bond at sn1 and a triple-unsaturated bond at sn2,
 # and PPG  with a transunsaturated bond at sn1 and a palmitoyl tail at sn2)
     "JPPG": (moltype, " -   -   -  GL0  -  PO4 GL1 GL2 C1A C2A C3A C4A  -   -  D1B C2B C3B C4B  -   - "),
     "JFPG": (moltype, " -   -   -  GL0  -  PO4 GL1 GL2 C1A D2A D3A D4A  -   -  D1B C2B C3B C4B  -   - "),
@@ -87,19 +87,19 @@ lipidsa.update({      # 1   2   3   4   5   6   7   8   9  10  11  12  13  14  1
 })
 
 
-# HII fix for PI templates and new templates PI(s) with diffrent tails, PO-PIP1(3) and POPIP2(4,5)  
+# HII fix for PI templates and new templates PI(s) with diffrent tails, PO-PIP1(3) and POPIP2(4,5)
 #Prototopology for phosphatidylinositol type lipids 5,6,7 are potentail phosphates (PIP1,PIP2 and PIP3)
 # 1,2,3 - is the inositol and 4 is the phosphate that links to the tail part.
 #  5
 #   \
 #  6-2-1-4-8--10-11-12-13-14-15
 #    |/    |
-#  7-3     9--16-17-18-19-20-21 
+#  7-3     9--16-17-18-19-20-21
 moltype = "INOSITOLLIPIDS"
 lipidsx[moltype] = (   .5,  .5,   0,   0,   1, .5,  0,  0,   .5,   0,   0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1)
 lipidsy[moltype] = (    0,   0,   0,   0,   0,  0,  0,  0,    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0)
 lipidsz[moltype] = (    8,   9,   9,   7,  10, 10, 10,  6,    6,   5,   4,   3,   2,   1,   0,   5,   4,   3,   2,   1,   0)
-lipidsa.update({      # 1     2    3    4    5   6   7   8    9    10    11    12    13    14   15    16    17    18    19   20 
+lipidsa.update({      # 1     2    3    4    5   6   7   8    9    10    11    12    13    14   15    16    17    18    19   20
     "DPPI": (moltype, " C1   C2   C3    CP   -   -   -  GL1  GL2  C1A  C2A  C3A  C4A   -    -   C1B  C2B  C3B  C4B   -    - "),
     "POPI": (moltype, " C1   C2   C3    CP   -   -   -  GL1  GL2  C1A  D2A  C3A  C4A   -    -   C1B  C2B  C3B  C4B   -    - "),
     "PIPI": (moltype, " C1   C2   C3    CP   -   -   -  GL1  GL2  C1A  D2A  D3A  C4A   -    -   C1B  C2B  C3B  C4B   -    - "),
@@ -122,7 +122,7 @@ lipidsa.update({      # 1     2    3    4    5   6   7   8    9    10    11    1
 #         |
 # 12-10-9-7-6-4-3-1--18--20-21-22-23-24
 #  |/   |/  |/  |/    |
-#  11   8   5   2    19--25-26-27-28-29 
+#  11   8   5   2    19--25-26-27-28-29
 moltype = "GLYCOLIPIDS"
 lipidsx[moltype] = (    0,  .5,   0,   0,  .5,  0,  0, .5,  0,    0,   .5,    0,    0,    0,   0,    0,    0,    0,   .5,   0,   0,   0,   0,   0,   1,   1,   1,   1,   1)
 lipidsy[moltype] = (    0,   0,   0,   0,   0,  0,  0,  0,  0,    0,    0,    0,   .5,    1,   1,    1,    1,    0,    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0)
@@ -145,14 +145,14 @@ lipidsa.update({      # 1     2    3    4    5   6   7   8   9    10    11    12
     "OPMG": (moltype, " C1   C2   C3    -    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  C3B  C4B   - "),
     "OPSG": (moltype, " S1   C1   C2   C3    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  C3B  C4B   - "),
     "OPGG": (moltype, "GB2  GB3  GB1  GA1  GA2 GA3   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  C3B  C4B   - "),
-#lipids for thylakoid membrane of spinach: for the *T both chains are triple unsaturated and the *G have a triple unsaturated chain at sn1 and a palmitoyl chain at sn2. 
+#lipids for thylakoid membrane of spinach: for the *T both chains are triple unsaturated and the *G have a triple unsaturated chain at sn1 and a palmitoyl chain at sn2.
     "FPMG": (moltype, " C1   C2   C3    -    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  D3B  D4B   - "),
     "DFMG": (moltype, " C1   C2   C3    -    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  D2A  D3A  D4A   -   C1B  D2B  D3B  D4B   - "),
     "FPSG": (moltype, " S1   C1   C2   C3    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  D3B  D4B   - "),
     "FPGG": (moltype, "GB2  GB3  GB1  GA1  GA2 GA3   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  D2B  D3B  D4B   - "),
     "DFGG": (moltype, "GB2  GB3  GB1  GA1  GA2 GA3   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  D2A  D3A  D4A   -   C1B  D2B  D3B  D4B   - "),
 ## Templates using the old lipid names and definitions
-  "GM1.o" : (moltype, "GM1  GM2  GM3  GM4  GM5 GM6 GM7 GM8 GM9  GM10  GM11  GM12  GM13  GM14 GM15  GM16  GM17   AM1   AM2  C1A  C2A  C3A  C4A  C5A  C1B  C2B  C3B  C4B   - "), 
+  "GM1.o" : (moltype, "GM1  GM2  GM3  GM4  GM5 GM6 GM7 GM8 GM9  GM10  GM11  GM12  GM13  GM14 GM15  GM16  GM17   AM1   AM2  C1A  C2A  C3A  C4A  C5A  C1B  C2B  C3B  C4B   - "),
   "DGDG.o": (moltype, "GB2  GB3  GB1  GA1  GA2 GA3   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  C2B  C3B  C4B   - "),
   "MGDG.o": (moltype, " C1   C2   C3    -    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  C2B  C3B  C4B   - "),
   "SQDG.o": (moltype, " S1   C1   C2   C3    -   -   -   -   -     -     -     -     -     -    -     -     -   GL1   GL2  C1A  C2A  C3A  C4A   -   C1B  C2B  C3B  C4B   - "),
@@ -172,11 +172,11 @@ lipidsa.update({      # 1     2    3    4    5    6    7    8    9    10    11  
 
 
 # Prototopology for cardiolipins
-#  
+#
 #       4-11-12-13-14-15-16
 #       |
 #   2---3--5--6--7--8--9-10
-#  / 
+#  /
 # 1
 #  \
 #   17-18-20-21-22-23-24-25
@@ -190,11 +190,11 @@ lipidsz[moltype] = (     8,   7,  6,  6,  5,  4,  3,  2,  1,  0,  5,  4,  3,  2,
 lipidsa.update({      #  1    2   3   4   5   6   7   8   9  10  11  12  13  14  15  16   17  18  19  20  21  22  23  24  25  26  27  28  29  30  31
     "CDL0": (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"), # Warning not the same names is in .itp
     "CDL1": (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"), # Warning not the same names is in .itp
-    "CDL2": (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"), # Warning not the same names is in .itp 
-    "CL4P": (moltype, "GL5 PO41 GL1 GL2 C1A C2A C3A C4A C5A   - C1B C2B C3B C4B C5B   - PO42 GL3 GL4 C1C C2C C3C C4C C5C   - C1D C2D C3D C4D C5D   -"), 
-    "CL4M": (moltype, "GL5 PO41 GL1 GL2 C1A C2A C3A   -   -   - C1B C2B C3B   -   -   - PO42 GL3 GL4 C1C C2C C3C   -   -   - C1D C2D C3D   -   -   -"), 
+    "CDL2": (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"), # Warning not the same names is in .itp
+    "CL4P": (moltype, "GL5 PO41 GL1 GL2 C1A C2A C3A C4A C5A   - C1B C2B C3B C4B C5B   - PO42 GL3 GL4 C1C C2C C3C C4C C5C   - C1D C2D C3D C4D C5D   -"),
+    "CL4M": (moltype, "GL5 PO41 GL1 GL2 C1A C2A C3A   -   -   - C1B C2B C3B   -   -   - PO42 GL3 GL4 C1C C2C C3C   -   -   - C1D C2D C3D   -   -   -"),
 ## Templates using the old lipid names and definitions
-  "CL4.o" : (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"), 
+  "CL4.o" : (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"),
   "CL4O.o": (moltype, "GL5 PO41 GL1 GL2 C1A C2A D3A C4A C5A   - C1B C2B D3B C4B C5B   - PO42 GL3 GL4 C1C C2C D3C C4C C5C   - C1D C2D D3D C4D C5D   -"),
 })
 
@@ -237,7 +237,7 @@ lipidsa.update({
 moltype = "Hopanoids"
 lipidsx[moltype] = (     0,  0,  0,  0, 0.5,-0.5,   0,   0, 0.5, 0.5,   0,   0,   0,   0,  0,  0,  0,  0)
 lipidsy[moltype] = (     0,  0,  0,  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  0,  0,  0,  0)
-lipidsz[moltype] = (     0,  0,  0,  0, 0.5, 1.4, 2.6,   3, 3.3, 3.9, 4.5, 5.0, 5.5, 6.0,  0,  0,  0,  0) 
+lipidsz[moltype] = (     0,  0,  0,  0, 0.5, 1.4, 2.6,   3, 3.3, 3.9, 4.5, 5.0, 5.5, 6.0,  0,  0,  0,  0)
 lipidsa.update({
     "HOPR": (moltype, " -   -   -   R1   R2   R3   R4   R5   R6   R7   R8   -    -    -    -   -   -   - "),
     "HHOP": (moltype, " -   -   -   R1   R2   R3   R4   R5   R6   R7   R8   C1   -    -    -   -   -   - "),
@@ -265,7 +265,7 @@ solventParticles = {
     "SPC":      (("OW",(0,0,0)),                             # SPC
                  ("HW1",(0.01,0,0)),
                  ("HW2",(0.01*ct,0.01*st,0))),
-    "SPCM":     (("OW",(0,0,0)),                             # Multiscale/Martini SPC 
+    "SPCM":     (("OW",(0,0,0)),                             # Multiscale/Martini SPC
                  ("HW1",(0.01,0,0)),
                  ("HW2",(0.01*ct,0.01*st,0)),
                  ("vW",(0,0,0))),
@@ -352,7 +352,7 @@ solventParticles = {
     "GLY":      (("BB", ( 0,    0,   0)),),
     "ALA":      (("BB", ( 0,    0,   0)),),
     "ASN":      (("BB", ( 0.25, 0,   0)),
-                 ("SC1",(-0.25, 0,   0))), 
+                 ("SC1",(-0.25, 0,   0))),
     "ASP":      (("BB", ( 0.25, 0,   0)),
                  ("SC1",(-0.25, 0,   0))),
     "GLU":      (("BB", ( 0.25, 0,   0)),
@@ -401,7 +401,7 @@ solventParticles = {
 for s in ["W","NA","CL","Mg","K","BUT"]:
     solventParticles[s] = ((s,(0,0,0)),)
 
-# Apolar amino acids nd stuff for orienting proteins in membrane 
+# Apolar amino acids nd stuff for orienting proteins in membrane
 apolar = "ALA CYS PHE ILE LEU MET VAL TRP PLM CLR".split()
 
 ## PRIVATE PARTS FROM THIS POINT ON ##
@@ -416,7 +416,7 @@ def vector(v):
         return [float(i) for i in v.split(",")]
     return float(v)
 
-def vvadd(a,b):    
+def vvadd(a,b):
     if type(b) in (int,float):
         return [i+b for i in a]
     return [i+j for i,j in zip(a,b)]
@@ -432,7 +432,7 @@ def isPDBAtom(l):
 def pdbAtom(a):
     ##01234567890123456789012345678901234567890123456789012345678901234567890123456789
     ##ATOM   2155 HH11 ARG C 203     116.140  48.800   6.280  1.00  0.00
-    ## ===>   atom name,   res name,     res id, chain,       x,            y,             z       
+    ## ===>   atom name,   res name,     res id, chain,       x,            y,             z
     return (S(a[12:16]),S(a[17:20]),I(a[22:26]),a[21],F(a[30:38])/10,F(a[38:46])/10,F(a[46:54])/10)
 
 d2r = 3.14159265358979323846264338327950288/180
@@ -448,10 +448,10 @@ def pdbBoxRead(a):
 def groAtom(a):
     #012345678901234567890123456789012345678901234567890
     #    1PRN      N    1   4.168  11.132   5.291
-    ## ===>   atom name,   res name,     res id, chain,       x,          y,          z       
+    ## ===>   atom name,   res name,     res id, chain,       x,          y,          z
     return (S(a[10:15]), S(a[5:10]),   I(a[:5]), " ", F(a[20:28]),F(a[28:36]),F(a[36:44]))
 
-def groBoxRead(a):    
+def groBoxRead(a):
     b = [F(i) for i in a.split()] + 6*[0] # Padding for rectangular boxes
     return b[0],b[3],b[4],b[5],b[1],b[6],b[7],b[8],b[2]
 
@@ -468,7 +468,7 @@ class Structure:
         self.atoms   = []
         self.coord   = []
         self.rest    = []
-        self.box     = []        
+        self.box     = []
         self._center = None
 
         if filename:
@@ -476,7 +476,7 @@ class Structure:
             # Try extracting PDB atom/hetatm definitions
             self.rest   = []
             self.atoms  = [pdbAtom(i) for i in lines if isPDBAtom(i) or self.rest.append(i)]
-            if self.atoms:             
+            if self.atoms:
                 # This must be a PDB file
                 self.title = "THIS IS INSANE!\n"
                 for i in self.rest:
@@ -485,7 +485,7 @@ class Structure:
                 self.box   = [0,0,0,0,0,0,0,0,0]
                 for i in self.rest:
                     if i.startswith("CRYST1"):
-                        self.box = pdbBoxRead(i)                
+                        self.box = pdbBoxRead(i)
             else:
                 # This should be a GRO file
                 self.atoms = [groAtom(i) for i in lines[2:-1]]
@@ -508,8 +508,16 @@ class Structure:
 
     def center(self,other=None):
         if not self._center:
-            self._center = [ sum(i)/len(i) for i in zip(*self.coord)]
+
+            # self._center = [ sum(i)/len(i) for i in zip(*self.coord)]
+            self._center = [ (max(i)+min(i))/2 for i in zip(*self.coord)]
+
+            if not other:
+                print(self._center)
+
+
         if other:
+            print("Other")
             s = vvsub(other,self._center)
             for i in range(len(self)):
                 self.coord[i] = vvadd(self.coord[i],s)
@@ -518,9 +526,23 @@ class Structure:
         return self._center
 
     def diam(self):
+        pos = self._center
         if self._center != (0,0,0):
+
             self.center((0,0,0))
-        return 2*math.sqrt(max([i*i+j*j+k*k for i,j,k in self.coord]))
+        diam = 2*math.sqrt(max([i*i+j*j+k*k for i,j,k in self.coord]))
+        self.center(pos)
+        return diam
+
+    # Lateral radius
+    def rad(self):
+        pos = self._center
+        if self._center != (0,0,0):
+
+            self.center((0,0,0))
+        r = math.sqrt(max([i*i+j*j for i,j,k in self.coord]))
+        self.center(pos)
+        return r*1.25
 
     def diamxy(self):
         if self._center != (0,0,0):
@@ -538,7 +560,7 @@ def meand(v):
 def ssd(u,v):
     return sum([(i-u[0])*(j-v[0]) for i,j in zip(u,v)])/(len(u)-1)
 
-# Parse a string for a lipid as given on the command line (LIPID[:NUMBER]) 
+# Parse a string for a lipid as given on the command line (LIPID[:NUMBER])
 def parse_mol(x):
     l = x.split(":")
     return l[0], len(l) == 1 and 1 or float(l[1])
@@ -557,6 +579,19 @@ def solve_p3( a, b, c ):
     else:
         R13   = math.sqrt3(R)
         return 2*R13-a3, -R13-a3, -R13-a3
+
+# Lateral radius-squared of a protein
+def radius(_p):
+
+    xs = [c[0] for c in _p.coord]
+    ys = [c[1] for c in _p.coord]
+
+    _px = (max(xs) - min(xs))/2
+    _py = (max(ys) - min(ys))/2
+
+    r2 = _px**2 + _py**2
+
+    return math.sqrt(r2)
 
 # Normalization of 3-vector
 def normalize(a):
@@ -589,7 +624,7 @@ class Option:
         self.num         = num
         self.value       = default
         self.description = description
-    def __nonzero__(self): 
+    def __nonzero__(self):
         return self.value != None
     def __str__(self):
         return self.value and str(self.value) or ""
@@ -600,9 +635,12 @@ class Option:
             self.value = [ self.func(i) for i in v ]
 
 tm   = []
+nums = []
+names= []
 lipL = []
 lipU = []
 solv = []
+nf = []
 
 # HII edit - lipid definition, for extra lipid definitaions
 usrmols  = []
@@ -611,13 +649,13 @@ usrlinks = []
 usrtails = []
 usrLipHeadMapp = { # Define supported lipid head beads. One letter name mapped to atom name
     "C":  ('NC3'), # NC3 = Choline
-    "E":  ('NH3'), # NH3 = Ethanolamine 
+    "E":  ('NH3'), # NH3 = Ethanolamine
     "G":  ('GL0'), # GL0 = Glycerol
     "S":  ('CNO'), # CNO = Serine
     "P":  ('PO4'), # PO4 = Phosphate
     "O":  ('PO4')  # PO4 = Phosphate acid
     }
-usrIndexToLetter = "A B C D E F G H I J K L M N".split() # For naming lipid tail beads 
+usrIndexToLetter = "A B C D E F G H I J K L M N".split() # For naming lipid tail beads
 
 # Description
 desc = ""
@@ -632,8 +670,11 @@ Input/output related options
     ("-f",      Option(tm.append,   1,        None, "Input GRO or PDB file 1: Protein")),
     ("-o",      Option(str,         1,        None, "Output GRO file: Membrane with Protein")),
     ("-p",      Option(str,         1,        None, "Optional rudimentary topology file")),
+    ("-np",     Option(nums.append, 1,           0, "Number of proteins (of each species) to insert")),
+    ("-name",   Option(names.append,1,        None, "Names of proteins")),
+    ("-nf",     Option(nf.append,   1,        None, "A protein to insert multiple copies of. -nf pdb:name:copies")),
     """
-Periodic boundary conditions 
+Periodic boundary conditions
 If -d is given, set up PBC according to -pbc such that no periodic
 images are closer than the value given.  This will make the numbers
 provided for lipids be interpreted as relative numbers. If -d is
@@ -649,7 +690,7 @@ PBC are set to fit the given number of lipids in.
     ("-box",    Option(readBox,     1,        None, "Box in GRO (3 or 9 floats) or PDB (6 floats) format, comma separated")),
     ("-n",      Option(str,         1,        None, "Index file --- TO BE IMPLEMENTED")),
     """
-Membrane/lipid related options.  
+Membrane/lipid related options.
 The options -l and -u can be given multiple times. Option -u can be
 used to set the lipid type and abundance for the upper leaflet. Option
 -l sets the type and abundance for the lower leaflet if option -u is
@@ -697,7 +738,7 @@ Define additional lipid types (same format as in lipid-martini-itp-v01.py)
     ("-allink",  Option(usrlinks.append,        1,        None, "Additional lipid linker specification string")),
     ("-altail",  Option(usrtails.append,        1,        None, "Additional lipid tail specification string")),
     ]
-    
+
 args = sys.argv[1:]
 
 if '-h' in args or '--help' in args:
@@ -718,9 +759,26 @@ while args:
     ar = args.pop(0)
     options[ar].setvalue([args.pop(0) for i in range(options[ar].num)])
 
-# Read in the structures (if any)    
+
+# Read in the structures (if any)
 tm    = [ Structure(i) for i in tm ]
 
+# Set a default name if none were provided
+if len(names) == 0 and len(nf) == 0:
+    names = ["Protein"]
+
+
+for _nf in nf:
+    pdb, name, n = _nf.split(":")
+    print("PDB: %s, name: %s, n: %s" % (pdb, name, n))
+    for _ in range(int(n)):
+        tm.append(Structure(pdb))
+        names.append(name)
+
+# Title each loaded protein
+for i in enumerate(tm):
+    i[1].title = names[i[0]]
+    # print("Loaded protein name is %s" % i[1].title)
 
 absoluteNumbers = not options["-d"]
 
@@ -735,13 +793,13 @@ for name, head, link, tail in zip(usrmols,usrheads,usrlinks,usrtails):
     headArray = (head).split()
     linkArray = (link).split()
     tailsArray = (tail).split()
-    lipidDefString = ""  
+    lipidDefString = ""
 
     if len(tailsArray) != len(linkArray):
         print "Error, Number of tails has to equal number of linkers"
         sys.exit()
 
-    # Find longest tail 
+    # Find longest tail
     maxTail = 0
     for cTail in tailsArray:
        if len(cTail) > maxTail:
@@ -761,7 +819,7 @@ for name, head, link, tail in zip(usrmols,usrheads,usrlinks,usrtails):
         lipidsx[moltype].append(max(i-0.5,0))
         lipidsy[moltype].append(0)
         lipidsz[moltype].append(cBeadZ)
-        if cLinker == 'G': 
+        if cLinker == 'G':
             lipidDefString += "GL" + str(i+1) + " "
         elif cLinker == 'A':
             lipidDefString += "AM" + str(i+1) + " "
@@ -769,17 +827,17 @@ for name, head, link, tail in zip(usrmols,usrheads,usrlinks,usrtails):
             print "Error, linker type not supported"
             sys.exit()
 
-    # Add tails 
+    # Add tails
     for i,cTail in enumerate(tailsArray):
         cBeadZ = maxTail - 1
-        
+
         for j,cTailBead in enumerate(cTail):
             lipidsx[moltype].append(i)
             lipidsy[moltype].append(0)
             lipidsz[moltype].append(cBeadZ)
             cBeadZ -= 1
             lipidDefString += cTailBead + str(j+1) + usrIndexToLetter[i] + " "
-   
+
     lipidsa[name] = (moltype,lipidDefString)
 # End user lipid definition
 
@@ -805,7 +863,7 @@ if options["-box"]:
 if options["-pbc"].value == "keep" and tm:
     options["-x"].value = tm[0].box[:3]
     options["-y"].value = tm[0].box[3:6]
-    options["-z"].value = tm[0].box[6:]    
+    options["-z"].value = tm[0].box[6:]
 
 # options -x, -y, -z take precedence over automatic determination
 pbcSetX = 0
@@ -836,9 +894,14 @@ up_lipd  =  options["-au"].value or lo_lipd
 ################
 
 
+proteins = []
 protein  = Structure()
 prot     = []
+prot_up,prot_lo = [],[]
 xshifts  = [0] # Shift in x direction per protein
+
+# Counter which protein we're on .TODO: Sloppy, use an enumerate
+_i = 0
 
 ## A. NO PROTEIN ---
 if not tm:
@@ -857,35 +920,36 @@ if not tm:
         # Hexagonal prism -- y derived from x directly
         pbcy = math.sqrt(3)*pbcx/2
         pbcz = options["-dz"].value or options["-z"].value or options["-d"].value
-    elif "optimal".startswith(options["-pbc"].value): 
+    elif "optimal".startswith(options["-pbc"].value):
         # Rhombic dodecahedron with hexagonal XY plane
         pbcy = math.sqrt(3)*pbcx/2
         pbcz = math.sqrt(6)*options["-d"].value/3
-    if "rectangular".startswith(options["-pbc"].value): 
+    if "rectangular".startswith(options["-pbc"].value):
         pbcz = options["-dz"].value or options["-z"].value or options["-d"].value
 
     # Possibly override
     pbcx = pbcSetX and pbcSetX[0] or pbcx
     pbcy = pbcSetY and pbcSetY[1] or pbcy
     pbcz = pbcSetZ and pbcSetZ[2] or pbcz
-            
+
 
 ## B. PROTEIN ---
 else:
+    resi = 0
 
     for prot in tm:
-
+        proteins.append(Structure())
 
         ## a. NO MEMBRANE --
         if not lipL:
 
             # A protein, but don't add lipids... Just solvate the protein
             # Maybe align along principal axes and then build a cell according to PBC
-                        
+
             # Set PBC starting from diameter and adding distance
             if "cubic".startswith(options["-pbc"].value):
                 pbcx = pbcy = pbcz = prot.diam()+options["-d"].value
-            elif "rectangular".startswith(options["-pbc"].value):                
+            elif "rectangular".startswith(options["-pbc"].value):
                 pbcx, pbcy, pbcz = vvadd(vvsub(prot.fun(max),prot.fun(min)),options["-d"].value)
             else:
                 # Rhombic dodecahedron
@@ -907,8 +971,8 @@ else:
 
         ## b. PROTEIN AND MEMBRANE --
         else:
-        
-            # Have to build a membrane around the protein. 
+
+            # Have to build a membrane around the protein.
             # So first put the protein in properly.
 
 
@@ -966,25 +1030,25 @@ else:
                 sx, sy, sz, w = zip(*surface)
                 W             = 1.0/sum(w)
 
-                # Weighted center of apolar region; has to go to (0,0,0) 
+                # Weighted center of apolar region; has to go to (0,0,0)
                 sxm,sym,szm   = [sum(p)*W for p in zip(*[(m*i,m*j,m*k) for m,i,j,k in zip(w,sx,sy,sz)])]
 
                 # Place apolar center at origin
                 prot.center((-sxm,-sym,-szm))
                 sx, sy, sz    = zip(*[(i-sxm,j-sym,k-szm) for i,j,k in zip(sx,sy,sz)])
 
-                # Determine weighted deviations from centers 
-                dx,dy,dz      = zip(*[(m*i,m*j,m*k) for m,i,j,k in zip(w,sx,sy,sz)]) 
+                # Determine weighted deviations from centers
+                dx,dy,dz      = zip(*[(m*i,m*j,m*k) for m,i,j,k in zip(w,sx,sy,sz)])
 
                 # Covariance matrix for surface
                 xx,yy,zz,xy,yz,zx = [sum(p)*W for p in zip(*[(i*i,j*j,k*k,i*j,j*k,k*i) for i,j,k in zip(dx,dy,dz)])]
-                
+
                 # PCA: u,v,w are a rotation matrix
                 (ux,uy,uz),(vx,vy,vz),(wx,wy,wz),r = mijn_eigen_sym_3x3(xx,yy,zz,xy,zx,yz)
 
                 # Rotate the coordinates
                 prot.coord = [(ux*i+uy*j+uz*k,vx*i+vy*j+vz*k,wx*i+wy*j+wz*k) for i,j,k in prot.coord]
-        
+
 
             ## 4. Orient the protein in the xy-plane
             ## i. According to principal axes and unit cell
@@ -1003,10 +1067,10 @@ else:
                 if xy != 0:
                     xx     = ssd(x,x)
                     yy     = ssd(y,y)
-                    
+
                     # The eigenvalues are the roots of the 2nd order
                     # characteristic polynomial, with the coefficients
-                    # equal to the trace and the determinant of the 
+                    # equal to the trace and the determinant of the
                     # matrix.
                     t,  d  = xx+yy, xx*yy - xy*xy
                     # The two eigenvectors form a 2D rotation matrix
@@ -1014,15 +1078,15 @@ else:
                     # the second eigenvector follows directly from
                     # the first. We thus only need to determine one.
                     l1     = t/2 + math.sqrt(0.25*t*t-d)
-                
+
                     ux, uy = l1-yy, xy
                     lu     = math.sqrt(ux*ux+uy*uy)
-                    
+
                     ux    /=  lu
                     uy    /=  lu
-                    
-                    # Finally we rotate the system in the plane by 
-                    # matrix multiplication with the transpose of 
+
+                    # Finally we rotate the system in the plane by
+                    # matrix multiplication with the transpose of
                     # the matrix of eigenvectors
                     prot.coord = [(ux*i+uy*j,ux*j-uy*i,k) for i,j,k in zip(x,y,z)]
 
@@ -1039,8 +1103,8 @@ else:
                 prot.coord = [(ux*i+uy*j,ux*j-uy*i,k) for i,j,k in prot.coord]
 
 
-            
-            ## 5. Determine the minimum and maximum x and y of the protein 
+
+            ## 5. Determine the minimum and maximum x and y of the protein
             pmin, pmax = prot.fun(min), prot.fun(max)
             prng       = (pmax[0]-pmin[0],pmax[1]-pmin[1],pmax[2]-pmin[2])
             center     = (0.5*(pmin[0]+pmax[0]),0.5*(pmin[1]+pmax[1]))
@@ -1064,7 +1128,7 @@ else:
             ## 6. Set box (brick) dimensions
             if options["-disc"]:
                 pbcx = options["-d"].value + 2*options["-disc"].value
-                if ("square".startswith(options["-pbc"].value) or 
+                if ("square".startswith(options["-pbc"].value) or
                     "rectangular".startswith(options["-pbc"].value)):
                     pbcy = pbcx
                 else:
@@ -1079,13 +1143,13 @@ else:
                     # This goes for a hexagonal cell as well as for the optimal arrangement
                     # The latter is hexagonal in the membrane plane anyway...
                     pbcy  = math.cos(math.pi/6)*pbcx
-                
+
 
             ## 7. Adjust PBC for hole
             # If we need to add a hole, we have to scale the system
             # The scaling depends on the type of PBC
             if options["-hole"]:
-                if ("square".startswith(options["-pbc"].value) or 
+                if ("square".startswith(options["-pbc"].value) or
                     "rectangular".startswith(options["-pbc"].value)):
                     scale = 1+options["-hole"].value/min(pbcx,pbcy)
                 else:
@@ -1104,34 +1168,147 @@ else:
             if options["-dm"]:
                 if options["-dm"].value < 0:
                     zshift += options["-dm"].value # - max(zip(*prot.coord)[2])
-                else:                        
+                else:
                     zshift += options["-dm"].value # - min(zip(*prot.coord)[2])
 
-            # Now we center the system in the rectangular 
+            # Now we center the system in the rectangular
             # brick corresponding to the unit cell
             # If -center is given, also center z in plane
-            prot += (0.5*pbcx, 0.5*pbcy, zshift)
-            
+
+            # If there's only one protein, center it
+            if len(tm) == 1:
+                prot += (0.5*pbcx, 0.5*pbcy, zshift)
+
+            # If there are multiple, randomly distribute them
+            # throughout the membrane
+            else:
+                _x = random.uniform(0, pbcx)
+                _y = random.uniform(0, pbcy)
+
+                # If it's the first protein, randomly place it
+                if len(proteins) == 1:
+                    # print("Placing first protein at %s\n" % ((_x, _y),))
+                    prot += (_x,_y,zshift)
+
+                # Otherwise, find a place that doesn't overlap
+                else:
+                        # HACK: the 2 is to space them out more, so they're never
+                        #   just touching.
+                    _r = radius(prot) * 1.5
+                    # print("Placing another protein, radius %.2f" % _r)
+                    # print("Attempting coordinates %s" % ((_x, _y),))
+
+                    attempts = 0
+
+                    # Find the centers and radii of all the proteins
+                    collision_list = []
+                    for p in proteins[:-1]: #TODO: Do this better
+                        xs = [c[0] for c in p.coord]
+                        ys = [c[1] for c in p.coord]
+                        x_center = (max(xs) + min(xs))/2
+                        y_center = (max(ys) + min(ys))/2
+
+                        r = radius(p)*2
+
+                        collision_list.append((x_center, y_center, r))
+
+                    # print(collision_list)
+
+
+                    spot_found = False
+                    while not spot_found:
+                        # print("Attempt: %d" % attempts)
+                        if attempts > 100000:
+                            print("****Made 100000 attempts to arrange the protein without finding a spot, quitting")
+                            sys.exit(-1)
+                        attempts += 1
+
+
+                        # Build a list of (relative distance, radius) to each other protein
+                        pos = [((c[0] - _x)**2 + (c[1] - _y)**2, c[2]) for c in collision_list]
+                        # print("**POS:")
+                        # print(pos)
+
+                        # print("_r = %f" % _r)
+
+                        # Check if it collides with any of the other proteins
+                        # Each element is True if it collides, False if not
+                        collisions = map(lambda d: (_r + d[1])**2 > d[0], pos)
+                        # print(collisions)
+                        #
+                        # collisions = []
+                        # for p in pos:
+                        #     print("Check the first element: %.2f > %.2f: %s"  %
+                        #         ((_r + p[1])**2,
+                        #         p[0],
+                        #         (_r + p[1])**2 > p[0]) )
+                        #     collisions.append((_r + p[1])**2 > p[0])
+
+                        # print("r+r^2: %.2f" % (_r + d[1])**2)
+                        # print("Separation:")
+                        # print("**COLLISIONS:")
+                        # print(collisions)
+
+                        # If every element in collisions is false, then there
+                        # are no collisions and we can place this protein
+                        spot_found = not sum(collisions)
+
+                        # If the spot was not valid, then try another
+                        # random coordinate
+                        if not spot_found:
+                            _x = random.uniform(0, pbcx)
+                            _y = random.uniform(0, pbcy)
+                            # print("**** Bad spot, trying again")
+
+                        if spot_found:
+                            pass
+                            # print("Spot found after %d attempts\n" % attempts)
+                            # print((_x, _y, zshift))
+
+                    prot += (_x,_y,zshift)
+
+
+        # Increment the residue numbers
+        # TODO: HACK! THIS ONLY WORKS FOR KALP with 21 residues!! Extend to longer ones!
+        for _j in range(len(prot.atoms)):
+
+            # Get the current protein's (coordinate,
+            atom = list(prot.atoms[_j])
+            #print(atom)
+            atom[2] += 21 * resi
+            prot.atoms[_j] = tuple(atom)
+            #print("Resi is %d" % resi)
 
         # And we collect the atoms
-        protein.atoms.extend(prot.atoms)
-        protein.coord.extend(prot.coord)
+        # TODO: Add a radius too
+        #print("Adding protein with RIs: %s" % [a[2] for a in prot.atoms])
+        proteins[_i].atoms.extend(prot.atoms)
+        proteins[_i].coord.extend(prot.coord)
+        proteins[_i].title = prot.title
+        # print("Title is %s, coord is %s" % (proteins[_i].title, proteins[_i].coord[2]))
+
+        _i += 1
+        resi += 1
+
 
 
     # Extract the parts of the protein that are in either leaflet
-    prot_up,prot_lo = [],[]
-    for ix,iy,iz in protein.coord:
-        if   iz > 0 and iz <  2.4:
-            prot_up.append((ix,iy))
-        elif iz < 0 and iz > -2.4:
-            prot_lo.append((ix,iy))
+    for protein in proteins:
+        for ix,iy,iz in protein.coord:
+            if   iz > 0 and iz <  2.4:
+                prot_up.append((ix,iy))
+            elif iz < 0 and iz > -2.4:
+                prot_lo.append((ix,iy))
+
 
 
     # Current residue ID is set to that of the last atom
-    resi = protein.atoms[-1][2]
-    
+    resi = proteins[-1].atoms[-1][2]
+
 atid      = len(protein)+1
 molecules = []
+
+# print("Proteins: %s" % [p.title for p in proteins])
 
 # The box dimensions are now (likely) set.
 # If a protein was given, it is positioned in the center of the
@@ -1176,7 +1353,7 @@ if lipL:
 
     lipd = lo_lipd
 
-    # Number of lipids in x and y in lower leaflet if there were no solute 
+    # Number of lipids in x and y in lower leaflet if there were no solute
     lo_lipids_x = int(pbcx/lipd+0.5)
     lo_lipdx    = pbcx/lo_lipids_x
     lo_rlipx    = range(lo_lipids_x)
@@ -1187,7 +1364,7 @@ if lipL:
     if options["-au"]:
         lipd = up_lipd
 
-    # Number of lipids in x and y in upper leaflet if there were no solute 
+    # Number of lipids in x and y in upper leaflet if there were no solute
     up_lipids_x = int(pbcx/lipd+0.5)
     up_lipdx    = pbcx/up_lipids_x
     up_rlipx    = range(up_lipids_x)
@@ -1195,17 +1372,19 @@ if lipL:
     up_lipdy    = pbcy/up_lipids_y
     up_rlipy    = range(up_lipids_y)
 
-    
+
     # Set up grids to check where to place the lipids
     grid_lo = [[0 for j in lo_rlipy] for i in lo_rlipx]
     grid_up = [[0 for j in up_rlipy] for i in up_rlipx]
 
     # If there is a protein, mark the corresponding cells as occupied
-    if protein:
+    if len(proteins) > 0:
         # Calculate number density per cell
-        for i in prot_lo: 
+        # For each coordinate of a protein atom in the lower or upper membrane,
+        #   increment that cell
+        for i in prot_lo:
             grid_lo[ int(lo_lipids_x*i[0]/rx)%lo_lipids_x ][ int(lo_lipids_y*i[1]/ry)%lo_lipids_y ] += 1
-        for i in prot_up: 
+        for i in prot_up:
             grid_up[ int(up_lipids_x*i[0]/rx)%up_lipids_x ][ int(up_lipids_y*i[1]/ry)%up_lipids_y ] += 1
 
 
@@ -1213,7 +1392,7 @@ if lipL:
     # The array is changed to boolean type here
     maxd    = float(max([max(i) for i in grid_up+grid_lo]))
     if  maxd == 0:
-        if protein:
+        if len(proteins)>0:
             print >>sys.stderr, "; The protein seems not to be inside the membrane."
             print >>sys.stderr, "; Run with -orient to put it in."
         maxd = 1
@@ -1223,41 +1402,76 @@ if lipL:
     grid_up = [[(j/maxd) <= fudge for j in i] for i in grid_up]
     grid_lo = [[(j/maxd) <= fudge for j in i] for i in grid_lo]
 
-    
+
     # If we don't want lipids inside of the protein
     # we also mark everything from the center up to the first cell filled
+    # TODO: This doesn't work for multiple proteins?
     if not options["-ring"]:
-        
+
+        if len(proteins) > 0:
+            for protein in proteins:
+                # Get the center of the protein
+                cx,cy = protein.center()[:2]
+                # Go out to the radius of the protein
+                # Mark any cells in this range as occupied
+                # rad = radius(protein)
+                rad = protein.rad()
+                #print("Radius is %s" % rad)
+                for i in range(len(grid_lo)):
+                    for j in range(len(grid_lo[i])):
+                        if (i*pbcx/lo_lipids_x - cx)**2 + (j*pbcy/lo_lipids_y - cy)**2 < rad**2:
+                            grid_lo[i][j] = False
+                for i in range(len(grid_up)):
+                    for j in range(len(grid_up[i])):
+                        if (i*pbcx/up_lipids_x - cx)**2 + (j*pbcy/up_lipids_y - cy)**2 < rad**2:
+                            grid_up[i][j] = False
+
+                # If a position is occupied in one grid, it should be occupied in both.
+                #   No mismatched lipids!
+
+                for i in range(len(grid_lo)):
+                    for j in range(len(grid_lo[i])):
+
+                        occupied = grid_lo[i][j] and grid_up[i][j]
+
+                        grid_lo[i][j] = occupied
+                        grid_up[i][j] = occupied
+
         # Upper leaflet
-        marked = [(i,j) for i in up_rlipx for j in up_rlipy if not grid_up[i][j]]
-        if marked:
-            # Find the center
-            cx,cy  = [float(sum(i))/len(marked) for i in zip(*marked)]
-            for i,j in marked:
-                md = int(abs(i-cx)+abs(j-cy)) # Manhattan length/distance
-                for f in range(md):
-                    ii = int(cx+f*(i-cx)/md)
-                    jj = int(cy+f*(j-cy)/md)
-                    grid_up[ii][jj] = False
+        # Mark all the unfilled cells
+        # marked = [(i,j) for i in up_rlipx for j in up_rlipy if not grid_up[i][j]]
+        # if marked:
+        #     # Find the center
+        #     cx,cy  = [float(sum(i))/len(marked) for i in zip(*marked)]
+        #     for i,j in marked:
+        #         md = int(abs(i-cx)+abs(j-cy)) # Manhattan length/distance
+        #         for f in range(md):
+        #             ii = int(cx+f*(i-cx)/md)
+        #             jj = int(cy+f*(j-cy)/md)
+        #             # TODO: Something about this line below didn't work right
+        #             #   when adding multiple proteins, and commenting it out
+        #             #   seemed to fix..
+        #             # HACK for sure
+        #             grid_up[ii][jj] = False
+        #
+        # # Lower leaflet
+        # marked = [(i,j) for i in lo_rlipx for j in lo_rlipy if not grid_lo[i][j]]
+        # if marked:
+        #     # Find the center
+        #     cx,cy  = [float(sum(i))/len(marked) for i in zip(*marked)]
+        #     for i,j in marked:
+        #         md = int(abs(i-cx)+abs(j-cy)) # Manhattan length
+        #         for f in range(md):
+        #             ii = int(cx+f*(i-cx)/md)
+        #             jj = int(cy+f*(j-cy)/md)
+        #             grid_lo[ii][jj] = False
 
-        # Lower leaflet
-        marked = [(i,j) for i in lo_rlipx for j in lo_rlipy if not grid_lo[i][j]]
-        if marked:
-            # Find the center
-            cx,cy  = [float(sum(i))/len(marked) for i in zip(*marked)]
-            for i,j in marked:
-                md = int(abs(i-cx)+abs(j-cy)) # Manhattan length
-                for f in range(md):
-                    ii = int(cx+f*(i-cx)/md)
-                    jj = int(cy+f*(j-cy)/md)
-                    grid_lo[ii][jj] = False
 
-
-    # If we make a circular patch, we flag the cells further from the 
+    # If we make a circular patch, we flag the cells further from the
     # protein or box center than the given radius as occupied.
     if options["-disc"]:
         if protein:
-            cx,cy = protein.center()[:2]            
+            cx,cy = protein.center()[:2]
         else:
             cx,cy = 0.5*pbcx, 0.5*pbcy
         for i in range(len(grid_lo)):
@@ -1272,12 +1486,12 @@ if lipL:
 
     # If we need to add a hole, we simply flag the corresponding cells
     # as occupied. The position of the hole depends on the type of PBC,
-    # to ensure an optimal arrangement of holes around the protein. If 
+    # to ensure an optimal arrangement of holes around the protein. If
     # there is no protein, the hole is just put in the center.
     if options["-hole"]:
         # Lower leaflet
         if protein:
-            if ("square".startswith(options["-pbc"].value) or 
+            if ("square".startswith(options["-pbc"].value) or
                 "rectangular".startswith(options["-pbc"].value)):
                 hx,hy = (0,0)
             else:
@@ -1306,7 +1520,7 @@ if lipL:
                     grid_up[xi][yj] = False
         # Upper leaflet
         if protein:
-            if ("square".startswith(options["-pbc"].value) or 
+            if ("square".startswith(options["-pbc"].value) or
                 "rectangular".startswith(options["-pbc"].value)):
                 hx,hy = (0,0)
             else:
@@ -1332,7 +1546,7 @@ if lipL:
                     if xi >= up_lipids_x:
                         xi -= up_lipids_x
                     grid_up[xi][yj] = False
-    
+
 
     # Set the XY coordinates
     # To randomize the lipids we add a random number which is used for sorting
@@ -1346,8 +1560,8 @@ if lipL:
         for j in xrange(lo_lipids_y):
             if grid_lo[i][j]:
                 lower.append((random.random(),i*pbcx/lo_lipids_x,j*pbcy/lo_lipids_y))
-        
-    
+
+
     # Sort on the random number
     upper.sort()
     lower.sort()
@@ -1365,21 +1579,21 @@ if lipL:
     # Types of lipids, relative numbers, fractions and numbers
 
     lipU = lipU or lipL
-    
+
     # Upper leaflet (+1)
     lipU, numU = zip(*[ parse_mol(i) for i in lipU ])
     totU       = float(sum(numU))
     num_up     = [int(len(upper)*i/totU) for i in numU]
     lip_up     = [l for i,l in zip(num_up,lipU) for j in range(i)]
     leaf_up    = ( 1,zip(lip_up,upper),up_lipdx,up_lipdy)
-    
+
     # Lower leaflet (-1)
     lipL, numL = zip(*[ parse_mol(i) for i in lipL ])
     totL       = float(sum(numL))
     num_lo     = [int(len(lower)*i/totL) for i in numL]
     lip_lo     = [l for i,l in zip(num_lo,lipL) for j in range(i)]
     leaf_lo    = (-1,zip(lip_lo,lower),lo_lipdx,lo_lipdy)
-    
+
     molecules  = zip(lipU,num_up) + zip(lipL,num_lo)
 
     kick       = options["-rand"].value
@@ -1411,11 +1625,23 @@ if lipL:
                 atid += 1
 
     # Now move everything to the center of the box before adding solvent
-    mz  = pbcz/2
-    z   = [ i[2] for i in protein.coord+membrane.coord ]
-    mz -= (max(z)+min(z))/2
-    protein += (0,0,mz)
+    mz = 0
+    for protein in proteins:
+        mz = pbcz/2
+	# List the z-coordinates of all the proteins and the membrane
+        z   = [ i[2] for i in protein.coord]
+
+        # Find the average z position
+        mz -= (max(z)+min(z))/2
+
+        # print("PBCZ is %.2f, avg protein z is %.2f, mz is %.2f" % (pbcz/2, (max(z)+min(z))/2, mz))
+
+        protein += (0,0,mz)
+    z = [ i[2] for i in membrane.coord]
+    mz = pbcz/2 - (max(z) + min(z))/2
+    # print("Shifting membrane by %.2f" % mz)
     membrane += (0,0,mz)
+
 
 
 ################
@@ -1428,24 +1654,27 @@ last = None
 mcharge = 0
 for j in membrane.atoms:
     if not j[0].strip().startswith('v') and j[1:3] != last:
-        mcharge += charges.get(j[1].strip(),0)  
+        mcharge += charges.get(j[1].strip(),0)
     last = j[1:3]
 
 last = None
 pcharge = 0
-for j in protein.atoms:
-    if not j[0].strip().startswith('v') and j[1:3] != last:
-        pcharge += charges.get(j[1].strip(),0)  
-    last = j[1:3]
+for protein in proteins:
+    for j in protein.atoms:
+        if not j[0].strip().startswith('v') and j[1:3] != last:
+            pcharge += charges.get(j[1].strip(),0)
+        last = j[1:3]
 
-#mcharge = sum([charges.get(i[0].strip(),0) for i in set([j[1:3] for j in membrane.atoms])]) 
+#mcharge = sum([charges.get(i[0].strip(),0) for i in set([j[1:3] for j in membrane.atoms])])
 #pcharge = sum([charges.get(i[0].strip(),0) for i in set([j[1:3] for j in protein.atoms if not j[0].strip().startswith('v')])])
 
 charge  = mcharge + pcharge
+# TODO: This output will be wrong for multiple proteins
 plen, mlen, slen = 0, 0, 0
-plen = protein and len(protein) or 0
-print >>sys.stderr, "; NDX Solute %d %d" % (1, protein and plen or 0)
-print >>sys.stderr, "; Charge of protein: %f" % pcharge
+if len(proteins) > 0:
+    plen = proteins[0] and len(proteins[0]) or 0
+    print >>sys.stderr, "; NDX Solute %d %d" % (1, proteins[0] and plen or 0)
+    print >>sys.stderr, "; Charge of protein: %f" % pcharge
 
 mlen = membrane and len(membrane) or 0
 print >>sys.stderr, "; NDX Membrane %d %d" % (1+plen, membrane and plen+mlen or 0)
@@ -1477,38 +1706,39 @@ if solv:
         midz   = (max(memz)+min(memz))/2
         hz     = int(nz*midz/pbcz)  # Grid layer in which the membrane is located
         zshift = (hz+0.5)*nz - midz # Shift of membrane middle to center of grid layer
-        
+
     # Initialize a grid of solvent, spanning the whole cell
     # Exclude all cells within specified distance from membrane center
     grid   = [[[i < hz-excl or i > hz+excl for i in xrange(nz)] for j in xrange(ny)] for i in xrange(nx)]
 
     # Flag all cells occupied by protein or membrane
-    for p,q,r in protein.coord+membrane.coord:
-        for s,t,u in pointsOnSphere(20):
-            x,y,z = p+0.33*s,q+0.33*t,r+0.33*u
-            if z >= pbcz:
-                x -= box[2][0]
-                y -= box[2][1]
-                z -= box[2][2]
-            if z < 0:
-                x += box[2][0]
-                y += box[2][1]
-                z += box[2][2]
-            if y >= pbcy: 
-                x -= box[1][0]
-                y -= box[1][1]
-            if y < 0: 
-                x += box[1][0]
-                y += box[1][1]
-            if x >= pbcx: 
-                x -= box[0][0]
-            if x < 0: 
-                x += box[0][0]
-            grid[int(nx*x/rx)][int(ny*y/ry)][int(nz*z/rz)] = False
+    for protein in proteins:
+        for p,q,r in protein.coord+membrane.coord:
+            for s,t,u in pointsOnSphere(20):
+                x,y,z = p+0.33*s,q+0.33*t,r+0.33*u
+                if z >= pbcz:
+                    x -= box[2][0]
+                    y -= box[2][1]
+                    z -= box[2][2]
+                if z < 0:
+                    x += box[2][0]
+                    y += box[2][1]
+                    z += box[2][2]
+                if y >= pbcy:
+                    x -= box[1][0]
+                    y -= box[1][1]
+                if y < 0:
+                    x += box[1][0]
+                    y += box[1][1]
+                if x >= pbcx:
+                    x -= box[0][0]
+                if x < 0:
+                    x += box[0][0]
+                grid[int(nx*x/rx)][int(ny*y/ry)][int(nz*z/rz)] = False
 
     # Set the center for each solvent molecule
     kick = options["-solr"].value
-    grid = [ (R(),(i+0.5+R()*kick)*dx,(j+0.5+R()*kick)*dy,(k+0.5+R()*kick)*dz) 
+    grid = [ (R(),(i+0.5+R()*kick)*dx,(j+0.5+R()*kick)*dy,(k+0.5+R()*kick)*dz)
              for i in xrange(nx) for j in xrange(ny) for k in xrange(nz) if grid[i][j][k] ]
 
     # Sort on the random number
@@ -1546,7 +1776,7 @@ if solv:
         nsol = ("SPC" in solnames and 1 or 4)*len(grid)
         ncl  = max(max(0,charge),int(.5+.5*(concentration*nsol/(27.7+concentration)+charge)))
         nna  = ncl - charge
-                        
+
     # Correct number of grid cells for placement of solvent
     ngrid   = len(grid) - nna - ncl
     num_sol = [int(ngrid*i/totS) for i in solnums]
@@ -1576,20 +1806,20 @@ if solv:
     for resn,(rndm,x,y,z) in solvent:
         resi += 1
         solmol = solventParticles.get(resn)
-        if solmol and len(solmol) > 1:       
+        if solmol and len(solmol) > 1:
             # Random rotation (quaternion)
             u,  v,  w       = random.random(), 2*math.pi*random.random(), 2*math.pi*random.random()
             s,  t           = math.sqrt(1-u), math.sqrt(u)
             qw, qx, qy, qz  = s*math.sin(v), s*math.cos(v), t*math.sin(w), t*math.cos(w)
-            qq              = qw*qw-qx*qx-qy*qy-qz*qz         
-            for atnm,(px,py,pz) in solmol:                
+            qq              = qw*qw-qx*qx-qy*qy-qz*qz
+            for atnm,(px,py,pz) in solmol:
                 qp = 2*(qx*px + qy*py + qz*pz)
                 rx = x + qp*qx + qq*px + qw*(qy*pz-qz*py)
                 ry = y + qp*qy + qq*py + qw*(qz*px-qx*pz)
                 rz = z + qp*qz + qq*pz + qw*(qx*py-qy*px)
                 sol.append(("%5d%-5s%5s%5d"%(resi%1e5,resn,atnm,atid%1e5),(rx,ry,rz)))
                 atid += 1
-        else:          
+        else:
             sol.append(("%5d%-5s%5s%5d"%(resi%1e5,resn,solmol and solmol[0][0] or resn,atid%1e5),(x,y,z)))
             atid += 1
 else:
@@ -1611,24 +1841,29 @@ if membrane.atoms:
     title  = "INSANE! Membrane UpperLeaflet>"+":".join(lipU)+"="+":".join([str(i) for i in numU])
     title += " LowerLeaflet>"+":".join(lipL)+"="+":".join([str(i) for i in numL])
 
-    if protein:
-        title = "Protein in " + title
+    if proteins:
+        print("Protein names are %s" % ', '.join(set([protein.title for protein in proteins])))
+        title = ', '.join(set([protein.title for protein in proteins])) + " in " + title
 else:
     title = "Insanely solvated protein."
+
+
 
 print >>oStream, title
 
 # Print the number of atoms
-print >>oStream, "%5d"%(len(protein)+len(membrane)+len(sol))
+protein_atoms = sum([len(p) for p in proteins])
+print >>oStream, "%5d"%(protein_atoms+len(membrane)+len(sol))
 
 # Print the atoms
 id = 1
-if protein:
-    for i in range(len(protein)):
-        at,rn,ri = protein.atoms[i][:3]
-        x,y,z    = protein.coord[i]
-        oStream.write("%5d%-5s%5s%5d%8.3f%8.3f%8.3f\n"%(ri%1e5,rn,at,id%1e5,x,y,z))
-        id += 1
+if proteins:
+    for protein in proteins:
+        for i in range(len(protein)):
+            at,rn,ri = protein.atoms[i][:3]
+            x,y,z    = protein.coord[i]
+            oStream.write("%5d%-5s%5s%5d%8.3f%8.3f%8.3f\n"%(ri%1e5,rn,at,id%1e5,x,y,z))
+            id += 1
 if membrane:
     for i in range(len(membrane)):
         at,rn,ri = membrane.atoms[i][:3]
@@ -1639,18 +1874,26 @@ if sol:
     # Print the solvent
     print >>oStream, "\n".join([i[0]+"%8.3f%8.3f%8.3f"%i[1] for i in sol])
 
+
 # Print the box
 print >>oStream, "%10.5f%10.5f%10.5f%10.5f%10.5f%10.5f%10.5f%10.5f%10.5f\n"%grobox
-
 if options["-p"]:
     # Write a rudimentary topology file
     top = open(options["-p"].value,"w")
     print >>top, '#include "martini.itp"\n'
     print >>top, '[ system ]\n; name\n%s\n\n[ molecules ]\n; name  number'%title
-    if protein:
-        print >>top, "%-10s %5d"%("Protein",1)
+
+    if proteins:
+        log_names = dict()
+        for protein in proteins:
+            if protein.title not in log_names.keys():
+                log_names[protein.title] = 0
+            log_names[protein.title] += 1
+
+        for _n in log_names.keys():
+            print >>top, "%-10s %5d"%(_n, log_names[_n])
+
     print >>top, "\n".join("%-10s %7d"%i for i in molecules)
     top.close()
 else:
     print >>sys.stderr, "\n".join("%-10s %7d"%i for i in molecules)
-
