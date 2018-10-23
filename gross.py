@@ -7,7 +7,7 @@ STEPS = ["setup", "solvation", "minimization",
 
 import json
 import os, sys, getopt
-import subprocess
+import subprocess, signal
 
 CONFIG = "gross_config.json"
 
@@ -133,7 +133,47 @@ class gromacs_executor:
             if dry:
                 print(mdrun_cmd)
             else:
-                subprocess.run(mdrun_cmd.split(), check=True)
+
+                # Use Popen here instead of run so that it's nonblocking and we
+                #   can handle errors -- specifically, KeyboardInterrupt.
+                # I think Gromacs does some nontrivial cleanup when it receives
+                #   a SIGINT that finishes the run nicely and wraps up all the
+                #   output files.
+                # Keeping this behavior is desirable so we can cancel runs, but
+                #   keep usable data from them.
+                #
+                # The subprocess module already provides a simplified, nonblocking
+                #   command in subprocess.run().
+                # However, because it's nonblocking, if the called process fails
+                #   to complete, a line like
+                #   process = subprocess.run(args)
+                #   will not actually complete the assignment.
+                # Thus, even though you'll be able to catch exceptions, you won't
+                #   be able to reference the 'process' object in them, because it
+                #   was never actually assigned.
+                # If you can't access the process object, then you can't pass
+                #   SIGINT to it, and so we must use Popen to handle gracefully
+                #   passing SIGINT (Control+C for the uninformed) to Gromacs.
+                try:
+                    mdrun_process = subprocess.Popen(mdrun_cmd.split())
+                    mdrun_process.wait()
+
+                # Handle mdrun itself crashing
+                except subprocess.CalledProcessError as e:
+
+                    print(e) #TODO: This probably isn't right.
+                    print("**** mdrun failed locally ****")
+
+                    return
+
+                # Pass Control+C gracefully to gromacs
+                except KeyboardInterrupt:
+
+                    print("\nKeyboard interrupt received, passing SIGINT to mdrun.")
+                    mdrun_process.send_signal(signal.SIGINT)
+                    mdrun_process.communicate()
+
+                    return
 
         # Use title to capitalize the first letter, so it's pretty.
         print("%s complete!" % step.title())
