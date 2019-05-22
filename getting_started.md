@@ -22,13 +22,18 @@ I suggest running through the following tutorials to get your bearings (in this 
 
 1. http://www.mdtutorials.com/gmx/lysozyme/index.html
 This is a good tutorial on simulating a single protein in a box of water. Pretty simple starting setup, and they do a great job of explaining what's going on in the steps. The forcefield this uses is not what we use, but that is a detail which can be swapped out. This website's tutorials are "updated for GROMACS 2018", but if I recall they should all be backwards compatible with GROMACS 5 without any issues.
+This one is also good because it introduces you to tools like `gmx energy`. GROMACS has a lot of neat built in analysis tools, there's also a `gmx msd` and a whole host of others. For a full list, you can see http://manual.gromacs.org/archive/5.0.3/programs/bytopic.html
 
 1. http://www.mdtutorials.com/gmx/membrane_protein/index.html
 This one gets a little spicier by having you simulating a membrane with a protein inside it.
 
-1. http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/bilayers-gmx5#Bilayer-self-assembly The bilayer self-assembly part is pretty cool and more or less painless. This will have you do a sort of similar process, but now using the forcefield we actually use. It's also super cool to watch the movie of the bilayer assembling itself from a bunch of lipids floating around. I recommend that at the part where they have you use `gmx view`, download, install, and figure out how to use VMD to visualize that instead of using `gmx view`. VMD is a common tool for visualizing these trajectories which we (and others) use a lot.
+1. http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/bilayers-gmx5#Bilayer-self-assembly 
+The bilayer self-assembly part is pretty cool and more or less painless. This will have you do a sort of similar process, but now using the forcefield we actually use. 
+It's also super cool to watch the movie of the bilayer assembling itself from a bunch of lipids floating around. 
+I recommend that at the part where they have you use `gmx view`, download, install, and figure out how to use VMD to visualize that instead of using `gmx view`. VMD is a common tool for visualizing these trajectories which we (and others) use a lot.
 
-1. http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/proteins-gmx5#membrane-protein The previous tutorials have you set up the system sort of "the hard way" using `genbox` and `solvate`.
+1. http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/proteins-gmx5#membrane-protein 
+The previous tutorials have you set up the system sort of "the hard way" using `genbox` and `solvate`.
 In practice, you can usually skip a lot of that by using a script from the Martini people called `insane.py` which builds a bilayer system for you (bonus points awarded when you get the joke in the name).
 When you run `insane.py` you pass it the size of the system you want, the type of lipids you want it to be made out of, the boundary conditions, and the files to write to. This is basically the Martini version of the second tutorial.
 
@@ -72,7 +77,7 @@ The GROMACS 5.1 user guide is available at http://manual.gromacs.org/5.1-current
 There are technical pages that give really detailed explanations of some of the algorithms themselves, along with more manpage style pages that describe details of various functions.
 
 
-### My Scripts
+## My Scripts
 
 All the custom scripts I've made live in https://github.com/jdrusso/gross
 
