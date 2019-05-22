@@ -47,7 +47,6 @@ Refer to his thesis for more detail on the algorithm, implementation, etc -- you
 
 The related code is available at https://github.com/EnergyLandscape/strd-gromacs and he also has a very helpful user guide at https://github.com/EnergyLandscape/strd-gromacs/blob/master/STRD%20User%20Guide.pdf
 
-I
 
 ## Types of files
 
