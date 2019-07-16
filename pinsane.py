@@ -513,11 +513,12 @@ class Structure:
             self._center = [ (max(i)+min(i))/2 for i in zip(*self.coord)]
 
             if not other:
-                print(self._center)
+                pass
+                #print(self._center)
 
 
         if other:
-            print("Other")
+            #print("Other")
             s = vvsub(other,self._center)
             for i in range(len(self)):
                 self.coord[i] = vvadd(self.coord[i],s)
@@ -1182,19 +1183,21 @@ else:
             # If there are multiple, randomly distribute them
             # throughout the membrane
             else:
-                _x = random.uniform(0, pbcx)
-                _y = random.uniform(0, pbcy)
+                print("PBCs are %f %f | Rad is %f" % (pbcx, pbcy, prot.rad()))
+                _x = random.uniform(prot.rad()*2, pbcx - prot.rad()*2)
+                _y = random.uniform(prot.rad()*2, pbcy - prot.rad()*2)
 
                 # If it's the first protein, randomly place it
                 if len(proteins) == 1:
                     # print("Placing first protein at %s\n" % ((_x, _y),))
                     prot += (_x,_y,zshift)
+                    print("First placed at %f, %f" % (_x, _y))
 
                 # Otherwise, find a place that doesn't overlap
                 else:
-                        # HACK: the 2 is to space them out more, so they're never
+                        # HACK: this is to space them out more, so they're never
                         #   just touching.
-                    _r = radius(prot) * 1.5
+                    _r = radius(prot) * 2.5
                     # print("Placing another protein, radius %.2f" % _r)
                     # print("Attempting coordinates %s" % ((_x, _y),))
 
@@ -1234,20 +1237,7 @@ else:
                         # Check if it collides with any of the other proteins
                         # Each element is True if it collides, False if not
                         collisions = map(lambda d: (_r + d[1])**2 > d[0], pos)
-                        # print(collisions)
-                        #
-                        # collisions = []
-                        # for p in pos:
-                        #     print("Check the first element: %.2f > %.2f: %s"  %
-                        #         ((_r + p[1])**2,
-                        #         p[0],
-                        #         (_r + p[1])**2 > p[0]) )
-                        #     collisions.append((_r + p[1])**2 > p[0])
 
-                        # print("r+r^2: %.2f" % (_r + d[1])**2)
-                        # print("Separation:")
-                        # print("**COLLISIONS:")
-                        # print(collisions)
 
                         # If every element in collisions is false, then there
                         # are no collisions and we can place this protein
@@ -1256,8 +1246,8 @@ else:
                         # If the spot was not valid, then try another
                         # random coordinate
                         if not spot_found:
-                            _x = random.uniform(0, pbcx)
-                            _y = random.uniform(0, pbcy)
+                            _x = random.uniform(prot.rad()*2, pbcx - prot.rad()*2)
+                            _y = random.uniform(prot.rad()*2, pbcy - prot.rad()*2)
                             # print("**** Bad spot, trying again")
 
                         if spot_found:
@@ -1266,6 +1256,7 @@ else:
                             # print((_x, _y, zshift))
 
                     prot += (_x,_y,zshift)
+                    print("Placed at %f, %f" % (_x, _y))
 
 
         # Increment the residue numbers
@@ -1409,16 +1400,20 @@ if lipL:
     if not options["-ring"]:
 
         if len(proteins) > 0:
+            # Iterate through each protein
             for protein in proteins:
                 # Get the center of the protein
                 cx,cy = protein.center()[:2]
+                cx -= 0.5
+                cy -= 0.5
                 # Go out to the radius of the protein
                 # Mark any cells in this range as occupied
                 # rad = radius(protein)
-                rad = protein.rad()
+                rad = protein.rad()*1.25
                 #print("Radius is %s" % rad)
                 for i in range(len(grid_lo)):
                     for j in range(len(grid_lo[i])):
+                        # If unoccupied:
                         if (i*pbcx/lo_lipids_x - cx)**2 + (j*pbcy/lo_lipids_y - cy)**2 < rad**2:
                             grid_lo[i][j] = False
                 for i in range(len(grid_up)):
