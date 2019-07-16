@@ -13,10 +13,6 @@ CONFIG = "gross_config.json"
 
 class gromacs_executor:
 
-    minimization = dict()
-    equilibration = dict()
-    production = dict()
-
     def __init__(self, filename):
 
         self.load_json(filename)
@@ -80,44 +76,65 @@ class gromacs_executor:
                 print("Remote was not specified! Check %s and ensure \
                 that remote and remote_dir are defined. " % CONFIG)
 
-            # Do the prep step remotely too, to avoid version mismatches
-            grompp_cmd = 'ssh -t %s cd %s ; ~/bin/gmx_srd ' % (self.remote, self.remote_dir) + grompp_cmd
+            if self.params["remote_grompp"] == "True":
+                # Do the prep step remotely too, to avoid version mismatches
+                grompp_cmd = 'ssh -t %s cd %s ; ~/bin/gmx_srd ' % (self.remote, self.remote_dir) + grompp_cmd
+
 
             # If an index file has been provided, use it.
             if ".ndx" in _p["other"]:
                 # Get the index file from the parameters
                 grompp_cmd += " -n %s" % [x for x in _p["other"].split() if ".ndx" in x][0]
 
+            if self.params["remote_grompp"] == "False":
+                subprocess.run(grompp_cmd.split(), check=True)
+
+            scheduler = ""
+            if "slurm" in _p.keys():
+                scheduler = "sbatch"
+                batchfile = _p["slurm"]
+            elif "grid" in _p.keys():
+                scheduler = "qsub"
+                batchfile = _p["grid"]
+            else:
+                raise "No valid scheduler"
+
             rsync_cmd = \
-            "rsync -r {params} {coords} {topol} {out} {other} {slurm} \
+            "rsync -r {params} {coords} {topol} {out} {other} {batchfile} \
             {remote}:{remote_dir}".format(
             params = _p["parameters"],
             coords = _p["coordinates"],
             topol  = _p["topology"],
-            out    = "",#_p["output"],
+            out    = _p["output"],
             other  = _p["other"],
-            slurm  = _p["slurm"],
+            batchfile  = batchfile,
             remote = self.remote,
             remote_dir = self.remote_dir)
 
-            sbatch_cmd = "ssh greene sbatch {remote_dir}{slurm}".format(
+            scheduler_cmd = "ssh {remote} {scheduler} {remote_dir}{batchfile}".format(
+            remote = self.remote,
             remote_dir = self.remote_dir,
-            slurm      = _p["slurm"])
+            scheduler  = scheduler,
+            batchfile  = batchfile)
 
             if dry:
                 print(rsync_cmd)
+
                 print(grompp_cmd)
-                print(sbatch_cmd)
+
+                print(scheduler_cmd)
 
             else:
                 # Sync over necessary files to run
                 subprocess.run(rsync_cmd.split(), check=True)
 
-                # Prep step on the remote
-                subprocess.run(grompp_cmd.split(), check=True)
+
+                if self.params["remote_grompp"] == "True":
+                    # Prep step on the remote
+                    subprocess.run(grompp_cmd.split(), check=True)
 
                 # Execute remote job
-                subprocess.run(sbatch_cmd.split(), check=True)
+                subprocess.run(scheduler_cmd.split(), check=True)
 
         # Invoke mdrun locally otherwise
         elif not cluster:
@@ -156,7 +173,7 @@ class gromacs_executor:
                 #   passing SIGINT (Control+C for the uninformed) to Gromacs.
                 try:
                     mdrun_process = subprocess.Popen(mdrun_cmd.split())
-                    mdrun_process.wait()
+                    mdrun_process.communicate()
 
                 # Handle mdrun itself crashing
                 except subprocess.CalledProcessError as e:
@@ -173,10 +190,16 @@ class gromacs_executor:
                     mdrun_process.send_signal(signal.SIGINT)
                     mdrun_process.communicate()
 
+                    print("Mdrun successfully aborted.")
+
                     return
 
+                # Handle other exceptions... Shouldn't ever get here.
+                except Exception as e:
+                    print("Unhandled exception! %s")
+
         # Use title to capitalize the first letter, so it's pretty.
-        print("%s complete!" % step.title())
+        print("\n%s complete!" % step.title())
 
 
     # Convenient callers for each step
