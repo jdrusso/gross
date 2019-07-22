@@ -58,7 +58,7 @@ class gromacs_executor:
 
         # Invoke grompp. Set check=True so an exception is raised if
         #   it's unsuccessful
-        grompp_cmd = "grompp -f {params} -c {coords} -p {topol} -o {out}".format(
+        grompp_cmd = "gmx grompp -f {params} -c {coords} -p {topol} -o {out}".format(
         params = _p["parameters"],
         coords = _p["coordinates"],
         topol  = _p["topology"],
@@ -144,7 +144,7 @@ class gromacs_executor:
             else:
                 subprocess.run(grompp_cmd.split(), check=True)
 
-            mdrun_cmd = "mdrun -v -deffnm {mdrun_name}".format(
+            mdrun_cmd = "gmx mdrun -v -deffnm {mdrun_name}".format(
             mdrun_name = _p["mdrun_name"])
 
             if dry:
