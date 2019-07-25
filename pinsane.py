@@ -543,7 +543,7 @@ class Structure:
             self.center((0,0,0))
         r = math.sqrt(max([i*i+j*j for i,j,k in self.coord]))
         self.center(pos)
-        return r*1.25
+        return r
 
     def diamxy(self):
         if self._center != (0,0,0):
@@ -1211,6 +1211,7 @@ else:
                         x_center = (max(xs) + min(xs))/2
                         y_center = (max(ys) + min(ys))/2
 
+                        # Radii of the existing proteins
                         r = radius(p)*2
 
                         collision_list.append((x_center, y_center, r))
@@ -1409,7 +1410,7 @@ if lipL:
                 # Go out to the radius of the protein
                 # Mark any cells in this range as occupied
                 # rad = radius(protein)
-                rad = protein.rad()*1.25
+                rad = protein.rad() + 0.5
                 #print("Radius is %s" % rad)
                 for i in range(len(grid_lo)):
                     for j in range(len(grid_lo[i])):
