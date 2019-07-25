@@ -536,19 +536,35 @@ class Structure:
         return diam
 
     # Lateral radius
-    def rad(self):
-        pos = self._center
-        if self._center != (0,0,0):
+    def rad(self, center=True):
 
-            self.center((0,0,0))
-        r = math.sqrt(max([i*i+j*j for i,j,k in self.coord]))
-        self.center(pos)
-        return r
+        if center:
+            pos = self._center
 
-    def diamxy(self):
-        if self._center != (0,0,0):
-            self.center((0,0,0))
-        return 2*math.sqrt(max([i*i+j*j for i,j,k in self.coord]))
+            if self._center != (0,0,0):
+
+                self.center((0,0,0))
+            r = math.sqrt(max([i*i+j*j for i,j,k in self.coord]))
+            self.center(pos)
+            return r
+
+        # The original version of this program by the Marrink group essentially just uses the default,
+        #   center=True behavior of this.
+        # This was retained by adding the default argument center=True, but sometimes it is 
+        #   desirable to find the radius of a protein without resetting the coordinates of the protein.
+        # Invoking .rad(center=False) does exactly that, using the clause below.
+        # Note that this is a lateral radius, ignoring z position.
+        else:
+
+            xs = [c[0] for c in self.coord]
+            ys = [c[1] for c in self.coord]
+
+            _px = (max(xs) - min(xs))/2
+            _py = (max(ys) - min(ys))/2
+
+            r2 = _px**2 + _py**2
+
+            return math.sqrt(r2)
 
     def fun(self,fn):
         return [fn(i) for i in zip(*self.coord)]
@@ -581,18 +597,6 @@ def solve_p3( a, b, c ):
         R13   = math.sqrt3(R)
         return 2*R13-a3, -R13-a3, -R13-a3
 
-# Lateral radius-squared of a protein
-def radius(_p):
-
-    xs = [c[0] for c in _p.coord]
-    ys = [c[1] for c in _p.coord]
-
-    _px = (max(xs) - min(xs))/2
-    _py = (max(ys) - min(ys))/2
-
-    r2 = _px**2 + _py**2
-
-    return math.sqrt(r2)
 
 # Normalization of 3-vector
 def normalize(a):
@@ -1197,7 +1201,7 @@ else:
                 else:
                         # HACK: this is to space them out more, so they're never
                         #   just touching.
-                    _r = radius(prot) * 2.5
+                    _r = prot.rad() * 2.5
                     # print("Placing another protein, radius %.2f" % _r)
                     # print("Attempting coordinates %s" % ((_x, _y),))
 
@@ -1212,7 +1216,7 @@ else:
                         y_center = (max(ys) + min(ys))/2
 
                         # Radii of the existing proteins
-                        r = radius(p)*2
+                        r = p.rad(center=False)*2.
 
                         collision_list.append((x_center, y_center, r))
 
@@ -1407,11 +1411,12 @@ if lipL:
                 cx,cy = protein.center()[:2]
                 cx -= 0.5
                 cy -= 0.5
+                
                 # Go out to the radius of the protein
                 # Mark any cells in this range as occupied
-                # rad = radius(protein)
+                
                 rad = protein.rad() + 0.5
-                #print("Radius is %s" % rad)
+                
                 for i in range(len(grid_lo)):
                     for j in range(len(grid_lo[i])):
                         # If unoccupied:
